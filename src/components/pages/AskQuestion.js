@@ -1,7 +1,5 @@
 import React from 'react'
 import HomeSideBar from './partials/HomeSideBar.js'
-import QuestionList from './partials/QuestionList'
-import Pagination from './partials/Pagination'
 
 function AskQuestion() {
     return(

@@ -1,22 +1,20 @@
 import React from 'react';
+import { Router } from 'react-router-dom';
 import Header from './components/shared/Header';
-import Menu from './components/shared/Menu';
 import Footer from './components/shared/Footer';
-import Home from './components/pages/Home'
-import Questions from './components/pages/Questions'
-import AskQuestion from './components/pages/AskQuestion'
-import QuestionDetail from './components/pages/QuestionDetail'
-import Author from './components/pages/Author'
+import history from './services/history';
+import Routes from './components/routes';
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Menu />
-      <Author />
-      <Footer />
-    </div>
-  );
+    return (
+      <div className="App">
+        <Header />
+        <Router history={history}>
+          <Routes />
+        </Router>
+        <Footer />
+      </div>
+    );
 }
 
 export default App;
