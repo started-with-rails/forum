@@ -3,7 +3,7 @@ import { Router } from 'react-router-dom';
 import Header from './components/shared/Header';
 import Footer from './components/shared/Footer';
 import history from './services/history';
-import Routes from './components/routes';
+import Routes from '../src/routes'
 
 function App() {
     return (

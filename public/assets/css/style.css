@@ -354,7 +354,9 @@ background:url(images/bullet.png) no-repeat left 15px;  }
 #lostpassword_form h4 { margin:0; padding:0; }
 .forgot_spacer { margin-left:57px; }
 
-
+.help-block{
+	color: red;
+}
 
 
 /* login form widget //////////////////////////////////////--------------------- */
