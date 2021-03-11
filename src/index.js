@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {Provider} from 'react-redux';
+import store from './redux/store'
 
 // redux integrate
 import { createStore, applyMiddleware } from 'redux'
@@ -16,9 +18,11 @@ const store = createStore(rootReducers, composeWithDevTools(applyMiddleware(thun
 
 // provide store to react
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

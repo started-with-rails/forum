@@ -1,12 +1,12 @@
-import React from 'react'
+import React,{useState} from 'react'
 
-function Tabs() {
+function Tabs({clickMe}) {
     return(
     <ul id="tab" className="clearfix">
-      <li className="page_item current_page_item"><a href="https://demo.templatic.com/answers/?ptype=latest">Recent</a></li>
-      <li className="page_item "><a href="https://demo.templatic.com/answers/?ptype=popular">Most Responses</a></li>
-      <li className="page_item "><a href="https://demo.templatic.com/answers/?ptype=unanswered">Unanswered</a></li>
-      <li className="page_item "><a href="https://demo.templatic.com/answers/?ptype=answers">Recently Answered</a></li>
+      <li className="page_item current_page_item"><a onClick={clickMe('recent')} href="#" >Recent</a></li>
+      <li className="page_item"><a onClick={clickMe('popular')} href="#">Most Responses</a></li>
+      <li className="page_item"><a onClick={clickMe('unanswered')} href="#">Unanswered</a></li>
+      <li className="page_item"><a onClick={clickMe('answers')} href="#">Recently Answered</a></li>
     </ul>
     )
 }
