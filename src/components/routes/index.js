@@ -14,13 +14,12 @@ export default function Routes() {
         <Menu />
         <Switch>
           <Route exact path="/" exact component={Home} />
-          <Route path="/questions" component={Questions} />
+          <Route path="/questions" exact component={Questions} />
+          <Route path="/questions/:id" exact component={QuestionDetail} />
           <Route path="/ask-question" component={AskQuestion} />
-          <Route path="/questions/:id" component={QuestionDetail} />
           <Route path="/author/:id" component={Author} />
           <Route component={Home} />
         </Switch>
       </BrowserRouter>
-     
   );
 }

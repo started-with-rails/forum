@@ -5,13 +5,13 @@ function AnswerQuestion() {
     <div id="respond">
       <h3>Answer Question</h3>
       <form action="https://demo.templatic.com/answers/?ptype=add_comments" method="post" id="commentform">
-        <p class="clearfix">
+        <p className="clearfix">
           <label> Your Answer</label>
-          <textarea name="comment" id="comment" rows="10" cols="10" tabindex="4" class="textarea" required=""></textarea>
+          <textarea name="comment" id="comment" rows="10" cols="10" tabindex="4" className="textarea" required=""></textarea>
         </p>
-        <input name="submit" type="submit" id="submit" class="" value="Submit" tabindex="6" />
+        <input name="submit" type="submit" id="submit" className="" value="Submit" tabindex="6" />
       </form>
-      <div class="fix"></div>
+      <div className="fix"></div>
     </div>
     )
 }

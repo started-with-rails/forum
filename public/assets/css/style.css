@@ -262,7 +262,7 @@ blockquote a { font-size:13px; }
 #content .posts h2, #content .posts h3, #content .posts h4, #content .posts h5, #content .posts h6 { margin:30px 0 5px 0; }
 #content h2, #content h3, #content h4, #content h5, #content h6 { margin:30px 0 5px 0;  }
 
-#content .posts { margin-bottom:120px; height:100%; overflow:hidden; }
+#content .posts { margin-bottom:50px; height:100%; overflow:hidden; }
 #content .post_top { margin:0 0 15px 0; }
 #content p.post_top a { }
 #content p.post_top a:hover { }
@@ -434,7 +434,7 @@ background:url(images/bullet.png) no-repeat left 15px;  }
 
 .commentlist li { width:100%; height:100%; clear:both; background:#ccc;  }
 
-#content #comments .comment { margin:0 0 80px 0;  list-style:none }
+#content #comments .comment { margin:0 0 10px 0;  list-style:none }
 #content #comments  p.authorcomment { margin:3px 0 0 0; padding:0; line-height:normal;  font-size:11px; font-weight:bold; }
 #comments .comment .meta-left { width:60px; float:left;}
 #comments .comment small {font-size:12px; font-weight:normal; padding-top:5px; display:block; }
