@@ -11,6 +11,7 @@ import Menu from '../components/shared/Menu';
 import { PrivateRoute } from './PrivateRoute';
 
 export default function Routes() {
+  
   return (
       <BrowserRouter>
         <Menu />

@@ -1,4 +1,4 @@
-import { FETCH_DATA,FETCH_ALL,FETCH_FAIL,FETCH_ONE } from "../actions/actionTypes";
+import { FETCH_DATA,FETCH_ALL,REQ_ERR,FETCH_ONE } from "../actions/actionTypes";
 
 const initialState={
   questions:[],
@@ -15,8 +15,8 @@ const questionsReducer = (state=initialState,action)=>{
       return {isLoading:false, questions: action.data, error:''}
     case FETCH_ONE:
         return {isLoading:false, question: action.data, error:''}
-    case FETCH_FAIL:
-      return {isLoading:false, questions:[], question: {},  error:action.data}
+    // case REQ_ERR:
+    //   return {isLoading:false, questions:[], question: {},  error:action.data}
     default:
       return state;
   }

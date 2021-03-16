@@ -1,5 +1,28 @@
-import { FETCH_DATA,FETCH_ALL,FETCH_FAIL,FETCH_ONE } from "../actions/actionTypes";
+import { FETCH_DATA,FETCH_ALL,FETCH_ONE,SET_TOKEN,REQ_ERR,REMOVE_TOKEN,SET_USER } from "../actions/actionTypes";
 import API from '../../services/api';
+
+
+
+export const getToken=(data)=>{
+  return {
+    type: SET_TOKEN,
+    data: data
+  }
+}
+
+export const clearToken=(data)=>{
+  return {
+    type: REMOVE_TOKEN,
+    token: data
+  }
+}
+
+export const setUser=(data)=>{
+  return {
+    type: SET_USER,
+    data: data
+  }
+}
 
 export const fetchQuestions=()=>{
   return {
@@ -26,9 +49,9 @@ export const fetchOne=(data)=>{
   }
 }
 
-export const fetchFail=(error)=>{
+export const requestError=(error)=>{
   return {
-    type:FETCH_FAIL,
+    type: REQ_ERR,
     data: error
   }
 }
@@ -41,7 +64,7 @@ export const GetQuestions = (type)=>{
       dispatch(fetchAll(response.data))
     })
     .catch(error=>{
-      dispatch(fetchFail(error))
+      dispatch(requestError(error))
     })
   }
 }
@@ -54,7 +77,46 @@ export const ShowQuestion = (id)=>{
       dispatch(fetchOne(response.data))
     })
     .catch(error=>{
-      dispatch(fetchFail(error))
+      dispatch(requestError(error))
+    })
+  }
+}
+
+export const HandleLogin = (data) => {
+  return function(dispatch){
+    API.post(`/authenticate.json`,data)
+    .then(response=>{
+      dispatch(getToken(response.data));
+      localStorage.setItem("token", response.data.auth_token);
+      API.defaults.headers.common['Authorization'] = `${response.data.auth_token}`;
+    })
+    .catch(error=>{
+      dispatch(requestError(error))
+    })
+  }
+}
+
+export const HandleLogout =() => {
+  return function(dispatch){
+  dispatch(clearToken());
+  localStorage.removeItem("token");
+  }
+}
+
+export const setToken =(token) => {
+  return function(dispatch){
+    dispatch(getToken(token));
+  }
+}
+
+export const GetUser = () => {
+  return function(dispatch){
+    API.get(`/authorize_token.json`)
+    .then(response=>{
+      dispatch(setUser(response.data));
+    })
+    .catch(error=>{
+      dispatch(requestError(error))
     })
   }
 }

@@ -21,8 +21,7 @@ class Menu extends Component {
                 <li id="menu-item-80" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-80"><Link to="about/">About</Link> </li>
               </ul>
             </li>
-            <li  className="menu-item menu-item-type-custom menu-item-object-custom"><Link to="/login">Sign In</Link> </li>
-            <li  className="menu-item menu-item-type-custom menu-item-object-custom"><Link to="/login">Sign Out</Link> </li>
+           
           </ul>
         </div>
       </div>

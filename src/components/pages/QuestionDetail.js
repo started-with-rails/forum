@@ -2,8 +2,6 @@ import React, {useState, useEffect} from 'react'
 import HomeSideBar from './partials/HomeSideBar.js'
 import Answers from './partials/Answers.js'
 import AnswerQuestion from './partials/AnswerQuestion.js'
-import {connect,useSelector} from 'react-redux';
-import {ShowQuestion} from '../../redux/actions/actions';
 import API from '../../services/api';
 
 
