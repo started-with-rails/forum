@@ -29,10 +29,14 @@ const Home = (props) => {
   <div id="wrapper">
     <div id="content">
       <Tabs clickMe={clickMe} type={type}/>
-      {questions.length > 0 ? questions.map(question => 
-        <QuestionList key={question.id} question = {question} />
-      ): ''}
-      <Pagination />
+     
+      <Pagination
+        data={questions}
+        RenderComponent={QuestionList}
+        title="QuestionList"
+        pageLimit={5}
+        dataLimit={5}
+      />
     </div>
     <HomeSideBar />
   </div>

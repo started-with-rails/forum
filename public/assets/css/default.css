@@ -25,11 +25,13 @@ hr { color:#fffdea; border:none; border-top:1px dotted #372322; }
 
 .alignleft, .alignright, #nav, #content #tab li.current_page_item a, 
 #content .user_tab li.current_page_item a, .author #content .user_tab li:first-child a,
-#content .post_top .avatar, .avatar, .pagination a, #content .userlistings li img, .body, #page_landing, #simplemodal-container
+#content .post_top .avatar, .avatar, #content .userlistings li img, .body, #page_landing, #simplemodal-container
 { background:#fff; }
 
 .btn_input_highlight:hover, input#submit:hover, #content .question_list:hover .answers_total, a.b_askquestions,
 .pagination .on, .pagination a:hover { background:#f5c142; }
+
+.prev.disabled,.next.disabled {  pointer-events: none;  box-shadow: none;  color: rgb(92, 90, 90) !important;}
 
 #sidebar .subscribe .submit:hover, .btn_input_highlight, input#submit,
 #content .answers_total, a:hover.b_askquestions { background:#82b541; }
