@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import {connect,useSelector} from 'react-redux';
 import Tabs from './partials/Tabs.js'
 import HomeSideBar from './partials/HomeSideBar.js'
@@ -9,6 +9,9 @@ import { GetQuestions } from '../../redux/actions/actions';
 
 
 const Home = (props) => {
+
+  const [type,  setType]  = useState('recent');
+
   let questions = useSelector(state => state.questions.questions)
   
   useEffect(() => {
@@ -19,12 +22,13 @@ const Home = (props) => {
   const clickMe = (type) => (event) => {
     event.preventDefault();
     props.get_questions(type);
+    setType(type);
   }
 
   return(
   <div id="wrapper">
     <div id="content">
-      <Tabs clickMe={clickMe}/>
+      <Tabs clickMe={clickMe} type={type}/>
       {questions.length > 0 ? questions.map(question => 
         <QuestionList key={question.id} question = {question} />
       ): ''}
