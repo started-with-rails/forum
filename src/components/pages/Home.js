@@ -5,26 +5,32 @@ import HomeSideBar from './partials/HomeSideBar.js'
 import QuestionList from './partials/QuestionList'
 import Pagination from './partials/Pagination';
 import queryString from 'query-string'
-import { GetQuestions } from '../../redux/actions/actions';
+import { GetQuestions,GetCategories } from '../../redux/actions/actions';
 
 
 const Home = (props) => {
 
   const [type,  setType]  = useState('recent');
+  const [category,  setCategory]  = useState();
 
   let questions = useSelector(state => state.questions.questions)
+  let categories = useSelector(state => state.categories.categories)
   
   useEffect(() => {
     let params = queryString.parse(props.location.search);
-    props.get_questions(params.type);
+    let category = props.match.params.id;
+    setCategory(category);
+    props.get_questions(category,params.type);
+    props.get_categories();
   }, []);
 
   const clickMe = (type) => (event) => {
     event.preventDefault();
-    props.get_questions(type);
+    props.get_questions(category,type);
     setType(type);
   }
 
+  
   return(
   <div id="wrapper">
     <div id="content">
@@ -35,17 +41,18 @@ const Home = (props) => {
         RenderComponent={QuestionList}
         title="QuestionList"
         pageLimit={5}
-        dataLimit={5}
+        dataLimit={10}
       />
     </div>
-    <HomeSideBar />
+    <HomeSideBar categories={categories}/>
   </div>
   )
 }
 
 const mapDispatchToProps=(dispatch)=>{
   return {
-    get_questions: (type)=> dispatch(GetQuestions(type))
+    get_questions: (category,type)=> dispatch(GetQuestions(category,type)),
+    get_categories: ()=> dispatch(GetCategories())
   }
 }
 

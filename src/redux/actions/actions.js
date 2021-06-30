@@ -1,4 +1,4 @@
-import { FETCH_DATA,FETCH_ALL,FETCH_ONE,SET_TOKEN,REQ_ERR,REMOVE_TOKEN,SET_USER } from "../actions/actionTypes";
+import { FETCH_DATA,FETCH_ALL,FETCH_ONE,SET_TOKEN,REQ_ERR,REMOVE_TOKEN,SET_USER,CATEGORY_LOAD,FETCH_CATEGORIES,FETCH_CATEGORY } from "../actions/actionTypes";
 import API from '../../services/api';
 
 
@@ -24,18 +24,43 @@ export const setUser=(data)=>{
   }
 }
 
-export const fetchQuestions=()=>{
+// categories actions
+export const loadCategories=()=>{
   return {
-    type:FETCH_DATA
+    type:CATEGORY_LOAD
   }
 }
+
+export const fetchCategories=(data)=>{
+  return {
+    type: FETCH_CATEGORIES,
+    data: data
+  }
+}
+export const fetchCategory=(data)=>{
+  return {
+    type: FETCH_CATEGORY,
+    data: data
+  }
+} // categories actions
+
+
+
 export const fetchQuestion=()=>{
   return {
     type:FETCH_DATA
   }
 }
 
-export const fetchAll=(data)=>{
+export const getRequest=()=>{
+  return {
+    type:FETCH_DATA
+  }
+}
+
+
+
+export const fetchData=(data)=>{
   return {
     type: FETCH_ALL,
     data: data
@@ -56,12 +81,26 @@ export const requestError=(error)=>{
   }
 }
 
-export const GetQuestions = (type)=>{
+export const GetCategories = (type)=>{
   return function(dispatch){
-    dispatch(fetchQuestions());
-    API.get(`/questions.json?type=${type}`)
+    dispatch(loadCategories());
+    API.get(`/categories.json`)
     .then(response=>{
-      dispatch(fetchAll(response.data))
+      dispatch(fetchCategories(response.data))
+    })
+    .catch(error=>{
+      dispatch(requestError(error))
+    })
+  }
+}
+
+export const GetQuestions = (category,type)=>{
+  return function(dispatch){
+    dispatch(getRequest());
+    var url = typeof(category) == "undefined" ? `/questions.json?type=${type}` : `categories/${category}/questions.json?type=${type}`
+    API.get(url)
+    .then(response=>{
+      dispatch(fetchData(response.data))
     })
     .catch(error=>{
       dispatch(requestError(error))

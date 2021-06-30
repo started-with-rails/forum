@@ -5,13 +5,12 @@ import CategoryWidget from '../widgets/CategoryWidget'
 import SearchWidget from '../widgets/SearchWidget'
 import TopUsersWidget from '../widgets/TopUsersWidget'
 
-function HomeSideBar(){
+function HomeSideBar({categories}){
   return(
     <div id="sidebar" className="sidebar_spacer">
-      <a href="https://demo.templatic.com/answers?ptype=ask-a-question" className="b_askquestions">Ask a Question</a>
+      <a href="#" className="b_askquestions">Ask a Question</a>
       <LoginWidget />
-      <TextWidget />
-      <CategoryWidget />
+      <CategoryWidget categories={categories} />
       <SearchWidget />
       <TopUsersWidget />
     </div>
