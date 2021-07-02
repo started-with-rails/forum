@@ -94,10 +94,12 @@ export const GetCategories = (type)=>{
   }
 }
 
-export const GetQuestions = (category,type)=>{
+export const GetQuestions = (category,tag,type)=>{
   return function(dispatch){
     dispatch(getRequest());
-    var url = typeof(category) == "undefined" ? `/questions.json?type=${type}` : `categories/${category}/questions.json?type=${type}`
+    var url = `/questions.json?type=${type}`
+    if (tag) { url = `${url}&tag=${tag}`}
+    if(category) { url = `categories/${category}`}
     API.get(url)
     .then(response=>{
       dispatch(fetchData(response.data))

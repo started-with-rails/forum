@@ -20,13 +20,13 @@ const Home = (props) => {
     let params = queryString.parse(props.location.search);
     let category = props.match.params.id;
     setCategory(category);
-    props.get_questions(category,params.type);
+    props.get_questions(category,undefined,params.type);
     props.get_categories();
   }, []);
 
   const clickMe = (type) => (event) => {
     event.preventDefault();
-    props.get_questions(category,type);
+    props.get_questions(category,undefined,type);
     setType(type);
   }
 
@@ -51,7 +51,7 @@ const Home = (props) => {
 
 const mapDispatchToProps=(dispatch)=>{
   return {
-    get_questions: (category,type)=> dispatch(GetQuestions(category,type)),
+    get_questions: (category,tag,type)=> dispatch(GetQuestions(category,tag,type)),
     get_categories: ()=> dispatch(GetCategories())
   }
 }

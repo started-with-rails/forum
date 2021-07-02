@@ -13,7 +13,7 @@ function QuestionList({question}) {
         <span className="views"><b>100 </b> views 
         </span> 
          { question.tag_list.map(tag =>  
-              <a href="" rel="tag"> {tag },</a>
+              <a href={`/tags/${tag}/questions`} rel="tag"> {tag },</a>
          )}
         <span className="pcate">
           <a href="" rel="category tag">{question.category_title}</a>

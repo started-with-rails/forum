@@ -1,33 +1,43 @@
-import React, { Component } from 'react';
+import React,{useEffect,useState} from 'react'
 import HomeSideBar from './partials/HomeSideBar.js'
 import QuestionList from './partials/QuestionList'
 import Pagination from './partials/Pagination'
-import { connect } from "react-redux";
-import { GetQuestions } from '../../redux/actions/actions';
+import {connect,useSelector} from 'react-redux';
+import { GetQuestions,GetCategories } from '../../redux/actions/actions';
 
-export class Questions extends Component {
+const Questions = (props) => {
  
-  componentDidMount() {
-    this.props.get_questions();
-  }
+  let questions = useSelector(state => state.questions.questions)
+  let categories = useSelector(state => state.categories.categories)
+  const [category,  setCategory]  = useState();
+  const [tag,  setTag]  = useState();
 
-  render() {
-    return(
+  useEffect(() => {
+    let category = props.match.params.category;
+    let tag = props.match.params.tag;
+    setCategory(category);
+    setTag(tag);
+    props.get_questions(category,tag,'recent');
+    props.get_categories();
+  }, []);
+  
+
+   return(
     <div id="wrapper">
       <div id="content">
         <h1 className="page_head">Questions </h1>
-        <div className="breadcrumbs">
-          <p><a href="https://demo.templatic.com/answers">Home</a> » Questions</p>
-        </div>
-        {this.props.questions.map(question => 
-          <QuestionList key={question.id} question = {question} />
-        )}
-        <Pagination />
+
+    <Pagination
+        data={questions}
+        RenderComponent={QuestionList}
+        title="QuestionList"
+        pageLimit={5}
+        dataLimit={10}
+      />
       </div>
-      <HomeSideBar />
+      <HomeSideBar categories={categories}/>
     </div>
     )
-  }
 }
 const mapStateToProps = (state)=>{
   return {
@@ -37,7 +47,9 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps=(dispatch)=>{
   return {
-    get_questions: ()=> dispatch(GetQuestions())
+    get_questions: (category,tag,type)=> dispatch(GetQuestions(category,tag,type)),
+    get_categories: ()=> dispatch(GetCategories())
+
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Questions)

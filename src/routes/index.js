@@ -23,7 +23,8 @@ export default function Routes() {
           <Route path="/author/:id" component={Author} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Login} />
-          <Route path="/categories/:id/questions" exact component={Home} />
+          <Route path="/categories/:category/questions" exact component={Questions} />
+          <Route path="/tags/:tag/questions" exact component={Questions} />
           <Route component={Home} />
         </Switch>
       </BrowserRouter>
